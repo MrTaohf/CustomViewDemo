@@ -42,6 +42,12 @@ public class CustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
+        // canvas坐标系 和 绘图(Matrix)坐标系 
+        // canvas坐标系：在view的左上角
+        // matrix绘图坐标系： 坐标系的原点初始状态是和canvas坐标原点相同的，但后续经过translate,rotate,scale等操作后，坐标系原点会发生变化
+        // matrix坐标系经过多次的translate,rotate,scale等操作的时候，需要合理的使用canvas的save()方法和restore()方法，使得save()和
+        // restore()达到一个平衡状态，即restore的使用次数必须<=save的次数，否则会出现错误绘制的情况。
+        
         canvas.save();
         mPaint.setColor(Color.BLACK);
         mPaint.setStrokeWidth(5f);
